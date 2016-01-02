@@ -6,6 +6,8 @@ We can pass html for every column, and with other angular directive, like `ng-cl
 you can pass any function to the table to add more logic with $scope attached.
 
 ### Usage
+
+`npm install ly-table`  
 Just import 'angular' , 'angular-sanitize' the `ly-table.js`,  
 or  
 for commonjs env, just `require('ly-table')`  
