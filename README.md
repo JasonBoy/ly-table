@@ -42,7 +42,13 @@ $scope.columns = [
   }
 ];
 ```
-
+**params**: [Object], especially the sortBy and sortDir for table, the partent scopt can $watch this to resort the table 
+```javascript```
+{
+  sortBy: 'age',
+  sortDir: 'DESC', //ASC
+}
+```
 **tableClass**: [String], add additional table css class  
 **noStrip**: [String], add bootstrap `table-strip` class  
 **autoEscape**: [String] true/false. default false, escape/unescape globally  
