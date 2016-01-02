@@ -29,7 +29,7 @@ angular.module('demo', ['lyTable'])
         {
           field: 'address',
           name: 'Address',
-          autoEscape: false,
+          autoEscape: true,
           formatter: simpleFormatter,
           cssClass: 'text-center',
           headCssClass: 'text-center',

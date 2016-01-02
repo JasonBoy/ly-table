@@ -43,6 +43,7 @@
        sortBy:''  //sort by name..., if not provided, will sort by field
        cssClass:'', //css in tbody td
        headCssClass:'', // css in thead th
+       autoEscape: 'false',
        formatter:'', //function to call to gen the html in the td,
        ..., other needed functions passed
      }.....
@@ -62,6 +63,7 @@
           data: '=', //json data from outside
           tableClass: '@', // css class for the whole table
           noStrip: '@',
+          autoEscape: '@',
           init: '&' //callback after DOM rendered
                     //<ly-table .... init="myInit(ele)"></ly-table>
         },
@@ -124,12 +126,10 @@
             }
           };
           function noEscape(column) {
-            return false === column.autoEscape || $scope.trustHtml;
+            return false === column.autoEscape || 'false' === $scope.autoEscape;
           }
         }],
         link: function ($scope, elem, attrs) {
-          //globally escape html
-          $scope.trustHtml = 'false' === attrs.autoEscape;
           $scope.addUndefinedSortBy();
           if ($scope.init) {
             $timeout(function () {
