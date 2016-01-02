@@ -5,7 +5,7 @@ This angular directive will create a html table based on the `data` and `columns
 We can pass html for every column, and with other angular directive, like `ng-click`,  
 you can pass any function to the table to add more logic with $scope attached.
 
-###Usage
+### Usage
 Just import 'angular' , 'angular-sanitize' the `ly-table.js`,  
 or  
 for commonjs env, just `require('ly-table')`  
@@ -17,7 +17,7 @@ Simple usage
 
 #### Directive options
 **data**: [Array] Array from $scope, just an array contains all the data, 
-```javescript
+```javascript
 $scope.data = [
   {
     name: 'jason',
@@ -46,7 +46,7 @@ $scope.columns = [
 ];
 ```
 **params**: [Object], especially the sortBy and sortDir for table, the partent scopt can $watch this to resort the table 
-```javascript```
+```
 {
   sortBy: 'age',
   sortDir: 'DESC', //ASC
@@ -57,5 +57,5 @@ $scope.columns = [
 **autoEscape**: [String] true/false. default false, escape/unescape globally  
 **init**: [Function], function to execute after DOM rendered  
 
-###Demo###
+###Demo
 See the demo in demo folder
