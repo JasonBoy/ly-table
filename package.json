@@ -1,0 +1,27 @@
+{
+  "name": "ly-table",
+  "version": "0.0.1",
+  "description": "Simple Angular Table Directive With Bootstrap Style",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasonBoy/ly-table.git"
+  },
+  "keywords": [
+    "angular",
+    "table"
+  ],
+  "author": "Jason Jiang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JasonBoy/ly-table/issues"
+  },
+  "homepage": "https://github.com/JasonBoy/ly-table#readme",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-sanitize": "^1.4.8"
+  }
+}
