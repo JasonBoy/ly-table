@@ -2,14 +2,17 @@
 Simple Angular Table Directive With Bootstrap Style
 
 This angular directive will create a html table based on the `data` and `columns` and other options.
+We can pass html for every column, and with other angular directive, like `ng-click`,  
+you can pass any function to the table to add more logic with $scope attached.
 
 ###Usage
 Just import 'angular' , 'angular-sanitize' the `ly-table.js`,  
-or for commonjs env, just `require('ly-table')`  
+or  
+for commonjs env, just `require('ly-table')`  
 
 Simple usage
 ```
-  <ly-table data="data" columns="columns" autoEscape="false" init="postInit(ele)" table-class="table-hover"></ly-table>
+  <ly-table data="data" columns="columns" auto-escape="false" init="postInit(ele)" table-class="table-hover"></ly-table>
 ```
 
 #### Directive options
