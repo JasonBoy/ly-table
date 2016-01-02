@@ -14,7 +14,10 @@
     "angular",
     "table"
   ],
-  "author": "Jason Jiang",
+  "author": {
+    "name": "Jason Jiang",
+    "email": "jasonlikenfs@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/JasonBoy/ly-table/issues"
