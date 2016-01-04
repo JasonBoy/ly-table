@@ -40,14 +40,14 @@ $scope.columns = [
     headCssClass:'', // css in thead th
     autoEscape: false, //auto escape the html in this td or not, 
     //if you need add other directive like ng-click in formatter, 
-    //set it to false, default value is true
+    //set it to false, default value is false
     formatter:'', //string or function to call to gen the html in the td, 
     //which can compile the html with scope with the help of      
     //[bindHtmlCompile](https://github.com/incuna/angular-bind-html-compile) directive, see demo
   }
 ];
 ```
-**params**: [Object], especially the sortBy and sortDir for table, the partent scopt can $watch this to resort the table 
+**params**: [Object], especially the sortBy and sortDir for table, the parent scope can $watch this to resort the table 
 ```
 {
   sortBy: 'age',
@@ -59,5 +59,5 @@ $scope.columns = [
 **autoEscape**: [String] true/false. default false, escape/unescape globally  
 **init**: [Function], function to execute after DOM rendered  
 
-###Demo
+### Demo
 See the demo in demo folder

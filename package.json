@@ -4,6 +4,7 @@
   "description": "Simple Angular Table Directive With Bootstrap Style",
   "main": "index.js",
   "scripts": {
+    "build": "uglifyjs ly-table.js --mangle --compress --comments -o ly-table.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -1,6 +1,7 @@
 /**
+ * @license MIT
  * Simple Angular Table Directive with Bootstrap table style
- *
+ * https://github.com/JasonBoy/ly-table
  */
 
 (function (window, angular) {
