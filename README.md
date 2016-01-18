@@ -14,7 +14,7 @@ for commonjs env, just `require('ly-table')`
 
 Simple usage
 ```
-  <ly-table data="data" columns="columns" auto-escape="false" init="postInit(ele)" table-class="table-hover"></ly-table>
+  <ly-table data="data" columns="columns" auto-escape="false" table-class="table-hover"></ly-table>
 ```
 
 #### Directive options
@@ -47,17 +47,19 @@ $scope.columns = [
   }
 ];
 ```
-**params**: [Object], especially the sortBy and sortDir for table, the parent scope can $watch this to resort the table 
-```
-{
-  sortBy: 'age',
-  sortDir: 'DESC', //ASC
-}
-```
 **tableClass**: [String], add additional table css class  
-**noStrip**: [String], add bootstrap `table-strip` class  
 **autoEscape**: [String] true/false. default false, escape/unescape globally  
-**init**: [Function], function to execute after DOM rendered  
+
+###Events
+**postLinked**: callback after link function  
+**sorting**: listen on the event to be notified when user click the thead td, 
+sort class `active`, `sortable` will be added to the `thead > tr > th > span` element based on the sort status   
+  ```
+  $scope.$on('sorting', function(e, column) {
+    var by = column.sortBy;
+    var dir = column.sortDir; //1: desc, else asc
+  }
+  ```
 
 ### Demo
 See the demo in demo folder
