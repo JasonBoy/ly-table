@@ -1,7 +1,7 @@
 {
   "name": "ly-table",
-  "version": "0.0.3",
-  "description": "Simple Angular Table Directive With Bootstrap Style",
+  "version": "0.1.0",
+  "description": "Simple Angular Table Directive",
   "main": "index.js",
   "scripts": {
     "build": "uglifyjs ly-table.js --mangle --compress --comments -o ly-table.min.js",
