@@ -1,5 +1,5 @@
 # ly-table
-Simple Angular Table Directive With Bootstrap Style
+Simple Angular Table Directive
 
 This angular directive will create a html table based on the `data` and `columns` and other options.
 We can pass html for every column, and with other angular directive, like `ng-click`,  

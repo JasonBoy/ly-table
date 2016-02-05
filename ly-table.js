@@ -7,54 +7,51 @@
 (function (window, angular) {
   'use strict';
   var app = angular.module('lyTable', ['ngSanitize']);
-
   var template = '<div class="ly-table-wrapper">' +
-    '<table class="table data-table {{tableClass}}">' +
-    '<thead>' +
-    '<tr>' +
-    '<th ng-class="column.headCssClass" ng-repeat="column in ::columns">' +
-    '<span ng-class="{\'active\':column.sortActive,\'sortable\':column.sortable}"' +
-    'ng-click="sort(column)">' +
-    '<span bind-html-compile="columnName(column)"></span>' +
-    '</span>' +
-    '</th>' +
-    '</tr>' +
-    '</thead>' +
-    '<tbody>' +
-    '<tr class="table-row" ng-repeat="item in data track by $index" ng-init="rowIndex = $index">' +
-    '<td ng-class="column.cssClass" ng-repeat="column in ::columns" ng-init="columnIndex = $index"' +
-    'bind-html-compile="displayContent(column.formatter, item[column.field], item, column)">' +
-    '</td>' +
-    '</tr>' +
-    '</tbody>' +
-    '</table>' +
-    '</div>'
-    ;
-
+          '<table class="table {{tableClass}}">' +
+          '<thead>' +
+          '<tr>' +
+          '<th ng-class="column.headCssClass" ng-repeat="column in ::columns">' +
+          '<span ng-class="{\'active\':column.sortActive,\'sortable\':column.sortable}"' +
+          'ng-click="sort(column)">' +
+          '<span bind-html-compile="columnName(column)"></span>' +
+          '</span>' +
+          '</th>' +
+          '</tr>' +
+          '</thead>' +
+          '<tbody>' +
+          '<tr ng-repeat="item in data track by $index" ng-init="rowIndex = $index">' +
+          '<td ng-class="column.cssClass" ng-repeat="column in ::columns" ng-init="columnIndex = $index"' +
+          'bind-html-compile="displayContent(column.formatter, item[column.field], item, column)">' +
+          '</td>' +
+          '</tr>' +
+          '</tbody>' +
+          '</table>' +
+          '</div>'
+      ;
 
   /**
    * Data table ui directive
    * ============ columns ===============
    [
-     {
-       field:'', //key in json result ,
-       name:'',  // text in header th
-       sortable:true, //if this column is sortable
-       sortBy:''  //sort by name..., if not provided, will sort by field
-       cssClass:'', //css in tbody td
-       headCssClass:'', // css in thead th
-       autoEscape: 'false',
-       formatter:'', //function to call to gen the html in the td,
-       ..., other needed functions passed
-     }.....
+   {
+     field:'', //key in json result ,
+     name:'',  // text in header th
+     sortable:true, //if this column is sortable
+     sortBy:''  //sort by name..., if not provided, will sort by field
+     cssClass:'', //css in tbody td
+     headCssClass:'', // css in thead th
+     autoEscape: 'false',
+     formatter:'', //function to call to gen the html in the td,
+     ..., other needed functions passed
+   }.....
    ]
    *
    */
   app.directive('lyTable', [
-    '$timeout',
     '$sce',
     '$filter',
-    function ($timeout, $sce, $filter) {
+    function ($sce, $filter) {
       return {
         restrict: 'EA',
         scope: {
@@ -87,7 +84,7 @@
           };
           $scope.normalizeSortField = function () {
             for (var i in $scope.columns) {
-              if($scope.columns.hasOwnProperty(i)) {
+              if ($scope.columns.hasOwnProperty(i)) {
                 var item = $scope.columns[i];
                 if (!item.sortBy) {
                   item.sortBy = item.field;
@@ -97,7 +94,7 @@
           };
           $scope.sort = function (col) {
             if (!col.sortable) return;
-            if(col.hasOwnProperty('sortDir')) {
+            if (col.hasOwnProperty('sortDir')) {
               col.sortDir = !col.sortDir;
             } else {
               col.sortDir = 1; //1: desc, else asc order
@@ -118,11 +115,9 @@
       };
     }]);
 
-
   /**
    * @see https://github.com/incuna/angular-bind-html-compile
    */
-
   app.directive('bindHtmlCompile', ['$compile', function ($compile) {
     return {
       restrict: 'A',
