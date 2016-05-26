@@ -1,10 +1,10 @@
-/**
+/**!
  * @license MIT
  * Simple Angular Table Directive without pagination,
  * https://github.com/JasonBoy/ly-table
  */
 
-(function (window, angular) {
+;!(function (window, angular) {
   'use strict';
   var app = angular.module('lyTable', ['ngSanitize']);
   var template = '<div class="ly-table-wrapper">' +

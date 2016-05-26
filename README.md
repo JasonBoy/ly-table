@@ -8,9 +8,10 @@ you can pass any function to the table to add more logic with $scope attached.
 ### Usage
 
 `npm install ly-table`  
-Just import 'angular' , 'angular-sanitize' the `ly-table.js`,  
+Just import 'angular.js' , 'angular-sanitize.js' and the `ly-table.js`,  
 or  
-for commonjs env, just `require('ly-table')`  
+for commonjs env, just `require('ly-table')`,  
+`var app = angular.module('app', ['lyTable']);`
 
 Simple usage
 ```
@@ -18,7 +19,7 @@ Simple usage
 ```
 
 #### Directive options
-**data**: [Array] Array from $scope, just an array contains all the data, 
+**data**: [Array] Array from $scope, just an array contains all the data,
 ```javascript
 $scope.data = [
   {
@@ -32,16 +33,16 @@ $scope.data = [
 ```javascript
 $scope.columns = [
   {
-    field: 'name', //which is key in 'data' of every row data object, 
+    field: 'name', //which is key in 'data' of every row data object,
     name: 'Age',
     sortable:true, //if this column is sortable
     sortBy:''  //sort by name..., if not provided, will sort by field
     cssClass:'', //css in tbody td
     headCssClass:'', // css in thead th
-    autoEscape: false, //auto escape the html in this td or not, 
-    //if you need add other directive like ng-click in formatter, 
+    autoEscape: false, //auto escape the html in this td or not,
+    //if you need add other directive like ng-click in formatter,
     //set it to false, default value is false
-    formatter:'', //string or function to call to gen the html in the td, 
+    formatter:'', //string or function to call to gen the html in the td,
     //which can compile the html with scope with the help of      
     //[bindHtmlCompile](https://github.com/incuna/angular-bind-html-compile) directive, see demo
   }
@@ -52,7 +53,7 @@ $scope.columns = [
 
 ###Events
 **postLinked**: callback after link function  
-**sorting**: listen on the event to be notified when user click the thead td, 
+**sorting**: listen on the event to be notified when user click the thead td,
 sort class `active`, `sortable` will be added to the `thead > tr > th > span` element based on the sort status   
   ```
   $scope.$on('sorting', function(e, column) {
