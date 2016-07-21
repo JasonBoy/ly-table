@@ -5,6 +5,8 @@ This angular directive will create a html table based on the `data` and `columns
 We can pass html for every column, and with other angular directive, like `ng-click`,  
 you can pass any function to the table to add more logic with $scope attached.
 
+> WARN: This directive only displays table data without any pagination function, do it with other plugins or by yourself
+
 ### Usage
 
 `npm install ly-table`  
