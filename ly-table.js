@@ -1,4 +1,4 @@
-/*!
+/**!
  * @license MIT
  * Simple Angular Table Directive without pagination,
  * https://github.com/JasonBoy/ly-table
@@ -14,7 +14,7 @@
           '<th ng-class="column.headCssClass" ng-repeat="column in columns">' +
           '<span ng-class="{\'active\':column.sortActive,\'sortable\':column.sortable}"' +
           'ng-click="sort(column)">' +
-          '<span ng-bind-html="columnName(column)"></span>' +
+          '<span bind-html-compile="columnName(column)"></span>' +
           '</span>' +
           '</th>' +
           '</tr>' +
@@ -22,7 +22,7 @@
           '<tbody>' +
           '<tr ng-repeat="item in data track by $index" ng-init="rowIndex = $index">' +
           '<td ng-class="column.cssClass" ng-repeat="column in columns" ng-init="columnIndex = $index"' +
-          'ng-bind-html="displayContent(column.formatter, item[column.field], item, column)">' +
+          'bind-html-compile="displayContent(column.formatter, item[column.field], item, column)">' +
           '</td>' +
           '</tr>' +
           '</tbody>' +
@@ -50,7 +50,8 @@
    */
   app.directive('lyTable', [
     '$sce',
-    function ($sce) {
+    '$filter',
+    function ($sce, $filter) {
       return {
         restrict: 'EA',
         scope: {
@@ -62,8 +63,9 @@
         replace: true,
         template: template,
         controller: ['$scope', function ($scope) {
+          var escapeHtml = $filter('linky');
           $scope.columnName = function (column) {
-            return $sce.trustAsHtml(column.name);
+            return noEscape(column) ? column.name : escapeHtml(column.name);
           };
           $scope.displayContent = function (formatter, fieldData, rowData, column) {
             var html = '';
@@ -71,9 +73,14 @@
               html = formatter.call(rowData, fieldData, column);
             }
             else {
-              html += String(formatter);
+              html += formatter;
             }
-            return $sce.trustAsHtml(html.toString());
+            //return html;
+            html = html.toString();
+            if (noEscape(column)) {
+              return html;
+            }
+            return escapeHtml(html);
           };
           $scope.normalizeSortField = function () {
             for (var i in $scope.columns) {
@@ -92,11 +99,14 @@
             } else {
               col.sortDir = 1; //1: desc, else asc order
             }
-            angular.forEach($scope.columns, function (ele) {
+            $scope.columns.forEach(function (ele) {
               ele.sortActive = ele.sortBy == col.sortBy;
             });
             $scope.$emit('sorting', col);
           };
+          function noEscape(column) {
+            return false === column.autoEscape || 'false' === $scope.autoEscape;
+          }
         }],
         link: function ($scope, elem, attrs) {
           $scope.normalizeSortField();
@@ -104,4 +114,29 @@
         }
       };
     }]);
+
+  /**
+   * @see https://github.com/incuna/angular-bind-html-compile
+   */
+  app.directive('bindHtmlCompile', ['$compile', function ($compile) {
+    return {
+      restrict: 'A',
+      link: function (scope, element, attrs) {
+        scope.$watch(function () {
+          return scope.$eval(attrs.bindHtmlCompile);
+        }, function (value) {
+          // In case value is a TrustedValueHolderType, sometimes it
+          // needs to be explicitly called into a string in order to
+          // get the HTML string.
+          element.html(value && value.toString());
+          // If scope is provided use it, otherwise use parent scope
+          var compileScope = scope;
+          if (attrs.bindHtmlScope) {
+            compileScope = scope.$eval(attrs.bindHtmlScope);
+          }
+          $compile(element.contents())(compileScope);
+        });
+      }
+    };
+  }]);
 })(window, window.angular);
