@@ -1,6 +1,6 @@
 {
   "name": "ly-table",
-  "version": "0.1.1",
+  "version": "0.3.0",
   "description": "Simple Angular Table Directive",
   "main": "index.js",
   "scripts": {

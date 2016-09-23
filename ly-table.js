@@ -11,7 +11,7 @@
           '<table class="table {{tableClass}}">' +
           '<thead>' +
           '<tr>' +
-          '<th ng-class="column.headCssClass" ng-repeat="column in ::columns">' +
+          '<th ng-class="column.headCssClass" ng-repeat="column in columns">' +
           '<span ng-class="{\'active\':column.sortActive,\'sortable\':column.sortable}"' +
           'ng-click="sort(column)">' +
           '<span bind-html-compile="columnName(column)"></span>' +
@@ -21,7 +21,7 @@
           '</thead>' +
           '<tbody>' +
           '<tr ng-repeat="item in data track by $index" ng-init="rowIndex = $index">' +
-          '<td ng-class="column.cssClass" ng-repeat="column in ::columns" ng-init="columnIndex = $index"' +
+          '<td ng-class="column.cssClass" ng-repeat="column in columns" ng-init="columnIndex = $index"' +
           'bind-html-compile="displayContent(column.formatter, item[column.field], item, column)">' +
           '</td>' +
           '</tr>' +
