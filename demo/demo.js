@@ -29,7 +29,7 @@ angular.module('demo', ['lyTable'])
         {
           field: 'address',
           name: 'Address',
-          autoEscape: true,
+          autoEscape: false,
           formatter: simpleFormatter,
           cssClass: 'text-center',
           headCssClass: 'text-center',
@@ -38,9 +38,9 @@ angular.module('demo', ['lyTable'])
           }
         }
       ];
-      $scope.postInit = function(ele) {
-        console.log('postInit');
-      };
+      $scope.$on('postLinked', function (e, ele) {
+        console.log(ele);
+      });
       function simpleFormatter(fieldData, rowData, columnDefinition) {
         return fieldData;
       }
